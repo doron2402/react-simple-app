@@ -1,0 +1,27 @@
+{
+  "name": "es7",
+  "version": "1.0.0",
+  "description": "## Stack   - Webpack   - Babel   - Axios   - React   - React-Router",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doron2402/react-simple-app.git"
+  },
+  "keywords": [
+    "React",
+    "Axios",
+    "Webpack",
+    "React-Router",
+    "Redux",
+    "Npm"
+  ],
+  "author": "Doron Segal <doron2402@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doron2402/react-simple-app/issues"
+  },
+  "homepage": "https://github.com/doron2402/react-simple-app#readme"
+}
