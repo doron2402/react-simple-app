@@ -3,7 +3,7 @@ var styles = {
 		background: 'transparent'
 	},
 	space: {
-		maringTop: '25px'
+		marginTop: '25px'
 	}
 };
 

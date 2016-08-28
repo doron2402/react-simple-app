@@ -39,7 +39,7 @@ UserDetails.propTypes = {
 		login: PropTypes.string.isRequired,
 		following: PropTypes.number.isRequired,
 		followers: PropTypes.number.isRequired,
-		public_repos: PropTypes.string.isRequired,
+		public_repos: PropTypes.number.isRequired,
 		blog: PropTypes.string
 	})
 };

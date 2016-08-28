@@ -19,15 +19,18 @@ var ResultsContainer = React.createClass({
 				scores: scores,
 				isLoading: false
 			});
+		}).catch(err => {
+			console.log('error in ResultsContainer githubHelpers battle');
+			console.warn(err);
 		});
 	},
 
 	render() {
 		return (
 			<Results 
-				isLoading={this.props.isLoading}
+				isLoading={this.state.isLoading}
 				playersInfo={this.props.location.state.playersInfo}
-				scores={this.props.scores}
+				scores={this.state.scores}
 			/>
 		)
 	}

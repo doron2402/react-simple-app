@@ -16,6 +16,7 @@ var ConfirmBattleContainer = React.createClass({
 	},
 
 	componentDidMount() {
+		console.log('did mount');
 		var query = this.props.location.query;
 		// fetch users from github and update state
 		githubHelper.getPlayersInfo([query.playerOne, query.playerTwo])
@@ -34,14 +35,6 @@ var ConfirmBattleContainer = React.createClass({
 	componentWillMount() {
 		console.log('will mount');
 	},
-
-	// componentWillReceiveProps() {
-	// 	console.log('componentWillReceiveProps');
-	// },
-
-	// componentWillUnmount() {
-	// 	console.log('componentWillUnmount');
-	// },
 
 	handleInitiateBattle() {
 		this.context.router.push({
