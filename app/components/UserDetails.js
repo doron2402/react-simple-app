@@ -37,8 +37,8 @@ UserDetails.propTypes = {
 		company: PropTypes.string,
 		name: PropTypes.string,
 		login: PropTypes.string.isRequired,
-		following: PropTypes.string.isRequired,
-		followers: PropTypes.string.isRequired,
+		following: PropTypes.number.isRequired,
+		followers: PropTypes.number.isRequired,
 		public_repos: PropTypes.string.isRequired,
 		blog: PropTypes.string
 	})

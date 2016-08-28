@@ -20,7 +20,6 @@ var ConfirmBattleContainer = React.createClass({
 		// fetch users from github and update state
 		githubHelper.getPlayersInfo([query.playerOne, query.playerTwo])
 		.then(response => {
-			debugger;
 			this.setState({
 				isLoading: false,
 				playerInfo: response
@@ -48,7 +47,7 @@ var ConfirmBattleContainer = React.createClass({
 		this.context.router.push({
 			pathname: '/results',
 			state: {
-				playerInfo: this.state.playerInfo
+				playersInfo: this.state.playerInfo
 			}
 		})
 	},
