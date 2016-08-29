@@ -4,6 +4,14 @@ var styles = {
 	},
 	space: {
 		marginTop: '25px'
+	},
+	container: {
+
+	},
+	content: {
+		textAlign: 'center',
+    size: '32px',
+    fontSize: '60px'
 	}
 };
 

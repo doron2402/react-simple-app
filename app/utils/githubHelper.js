@@ -60,7 +60,6 @@ function getPlayersData(player) {
 }
 
 function scoreAlgorithm(player) {
-	debugger;
 	var total = player.followers * 5;
 	total += player.totalStars * 20;
 	total += player.totalForks * 15;
