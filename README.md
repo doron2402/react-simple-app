@@ -41,3 +41,12 @@
   - Explicit Mutations
     `this.state...`
 
+## Important Notes
+  - ES6 features
+    + let / const
+    + import / export
+    + destructring 
+    + arrow function
+    + default value
+    + concise Objects
+    + Async / Await

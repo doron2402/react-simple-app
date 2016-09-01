@@ -1,9 +1,8 @@
-var React = require('react');
-const PropTypes = React.PropTypes;
-var ConfirmBattle = require('../components/ConfirmBattle');
-var githubHelper = require('../utils/githubHelper');
+import React, { PropTypes } from 'react';
+import ConfirmBattle from '../components/ConfirmBattle';
+import { getPlayersInfo } from '../utils/githubHelper';
 
-var ConfirmBattleContainer = React.createClass({
+const ConfirmBattleContainer = React.createClass({
 	contextTypes: {
 		router: PropTypes.object.isRequired
 	},
@@ -16,10 +15,9 @@ var ConfirmBattleContainer = React.createClass({
 	},
 
 	componentDidMount() {
-		console.log('did mount');
-		var query = this.props.location.query;
+		const { query } = this.props.location;
 		// fetch users from github and update state
-		githubHelper.getPlayersInfo([query.playerOne, query.playerTwo])
+		getPlayersInfo([query.playerOne, query.playerTwo])
 		.then(response => {
 			this.setState({
 				isLoading: false,
@@ -56,4 +54,4 @@ var ConfirmBattleContainer = React.createClass({
 	}
 });
 
-module.exports = ConfirmBattleContainer;
+export default ConfirmBattleContainer;

@@ -1,11 +1,10 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var transparentBg = require('../styles').transparentBg;
+import React, { PropTypes } from 'react';
+import { transparentBg } from '../styles';
 
 
 function Prompt(props) {
 	// Get text for submit button
-	var submitText = props.header == 'Player Two' ? 'Battle!' : 'Continue';
+	const submitText = props.header == 'Player Two' ? 'Battle!' : 'Continue';
 
 	return (
 			<div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
@@ -31,7 +30,6 @@ function Prompt(props) {
 		)
 }
 
-PropTypes
 
 Prompt.propTypes = {
 	header: PropTypes.string.isRequired,
@@ -40,4 +38,4 @@ Prompt.propTypes = {
 	username: PropTypes.string.isRequired
 };
 	
-module.exports = Prompt;
+export default Prompt;

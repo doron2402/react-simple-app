@@ -1,9 +1,8 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Results = require('../components/Results');
-var githubHelpers = require('../utils/githubHelper');
+import React, { PropTypes } from 'react';
+import Results from '../components/Results';
+import { battle } from '../utils/githubHelper';
 
-var ResultsContainer = React.createClass({
+const ResultsContainer = React.createClass({
 	getInitialState() {
 		return {
 			isLoading: true,
@@ -12,16 +11,15 @@ var ResultsContainer = React.createClass({
 	},
 
 	componentDidMount() {
-		console.log(this.props.location.state.playersInfo);
-		githubHelpers.battle(this.props.location.state.playersInfo)
+		battle(this.props.location.state.playersInfo)
 		.then(scores => {
 			this.setState({
-				scores: scores,
+				scores: scores || 0,
 				isLoading: false
 			});
 		}).catch(err => {
-			console.log('error in ResultsContainer githubHelpers battle');
-			console.warn(err);
+			console.error('error in ResultsContainer githubHelpers battle');
+			console.error(err);
 		});
 	},
 
@@ -36,4 +34,4 @@ var ResultsContainer = React.createClass({
 	}
 });
 
-module.exports = ResultsContainer;
+export default ResultsContainer;

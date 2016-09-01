@@ -1,21 +1,22 @@
-var axios = require('axios');
-var _ = require('lodash');
+import axios  from 'axios';
+import _  from 'lodash';
+
 const githubApi = 'https://api.github.com';
 const github = {
 	id: '',
 	secret: '',
 	getParams() {
-		return '?client_id=' + this.id + '&client_secret=' + this.secret;
+		return `?client_id=${this.id}&client_secret=${this.secret}`;
 	}
 };
 
-function getUserInfo(username) {
-	return axios.get(githubApi + '/users/' + username + github.getParams())
+function getUserInfo(username = 'doron2402') {
+	return axios.get(`${githubApi}/users/${username}${github.getParams()}`)
 }
 
 
-function getRepos(username) {
-	return axios.get(githubApi + '/users/' + username + '/repos' + github.getParams() + '&per_page=100');
+function getRepos(username = 'doron2402') {
+	return axios.get(`${githubApi}/users/${username}/repos${github.getParams()}&per_page=100`);
 }
 
 function getTotalStars(obj) {
@@ -43,23 +44,26 @@ function getTotalForks(obj) {
 }
 
 // Fetch repos -> get Total Start
-function getPlayersData(player) {
-	return getRepos(player.login)
+function getPlayersData({ login = 'doron2402', followers = 0, public_repos = 0}) {
+	return getRepos(login)
 	.then(getTotalStars)
 	.then(getTotalForks)
-	.then(obj => {
-		return {
-			followers: player.followers || 0,
-			totalStars: obj.totalStars,
-			totalForks: obj.totalForks,
-			publicRepos: player.public_repos
-		};
-	}).catch(err => {
+	.then(obj => (
+		{
+			followers: followers || 0,
+			totalStars: obj.totalStars || 0,
+			totalForks: obj.totalForks || 0,
+			publicRepos: public_repos || 0
+		}
+	)).catch(err => {
 		console.warn(err);
 	});
 }
 
 function scoreAlgorithm(player) {
+	if (!player) {
+		return 0;
+	}
 	var total = player.followers * 5;
 	total += player.totalStars * 20;
 	total += player.totalForks * 15;
@@ -69,33 +73,26 @@ function scoreAlgorithm(player) {
 
 // return an array
 function calculateScore (players) {
-
+	debugger;
 	return [
 		scoreAlgorithm(players[0]),
 		scoreAlgorithm(players[1])
 	];
 }
 
-var helpers = {
-	getPlayersInfo(players) {
-		return axios.all(players.map(username => getUserInfo(username)))
-		.then(info => {
-			return info.map(user => user.data);
-		})
-		.catch(err => {
-			console.error(err);
-		});
-	},
-	battle(players) {
-		var playerOneData = getPlayersData(players[0]);
-		var playerTwoData = getPlayersData(players[1]);
-		return axios.all([playerOneData, playerTwoData])
-		.then(calculateScore)
-		.catch(err => {
-			console.warn('An error found.');
-			console.error(err);
-		});
-	}
+export function getPlayersInfo(players) {
+	return axios.all(players.map(username => getUserInfo(username)))
+	.then(info => info.map(user => user.data))
+	.catch(err => { console.error(err); });
 };
 
-module.exports = helpers;
+export function battle(players) {
+	const playerOneData = getPlayersData(players[0]);
+	const playerTwoData = getPlayersData(players[1]);
+	return axios.all([playerOneData, playerTwoData])
+	.then(calculateScore)
+	.catch(err => {
+		console.warn('An error found.');
+		console.error(err);
+	});
+};
