@@ -14,20 +14,18 @@ const ConfirmBattleContainer = React.createClass({
 		}
 	},
 
-	componentDidMount() {
+	async componentDidMount() {
 		const { query } = this.props.location;
 		// fetch users from github and update state
-		getPlayersInfo([query.playerOne, query.playerTwo])
-		.then(response => {
+		try {
+			const players = await getPlayersInfo([query.playerOne, query.playerTwo]);
 			this.setState({
 				isLoading: false,
-				playerInfo: response
+				playerInfo: [players[0], players[1]]
 			});
-		})
-		.catch(err => {
-			alert('error');
-			console.error(err);
-		});
+		} catch (error) {
+			console.error(`Error: Get Player Info query: ${JSON.stringify(query)}`);
+		}
 	},
 
 	componentWillMount() {

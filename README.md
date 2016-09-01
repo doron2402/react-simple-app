@@ -49,4 +49,4 @@
     + arrow function
     + default value
     + concise Objects
-    + Async / Await
+    + Async / Await // going to be part of es8
